@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar style="--background: #009e59;">
+    <ion-title style="color: white;">
+      Subareas
+    </ion-title>
+    <ion-button style="color: white;" (click)="presentPopover($event)" slot="end" fill="clear">
+      <ion-icon slot="icon-only" name="more"></ion-icon>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-radio-group name="auto" [(ngModel)]="searchOpt" (ionChange)=limparBusca()>
+      <ion-item slot="start" lines="none">
+        <ion-label slot="start">Procurar por:</ion-label>
+        <ion-radio value="searchTag"></ion-radio>
+        <ion-label style="padding-left: 5px;">Tag</ion-label>
+        <ion-radio value="searchLocal"></ion-radio>
+        <ion-label style="padding-left: 5px;">Local</ion-label>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-toolbar>
+    <ion-searchbar showcancelbutton="" (ionInput)="filterList($event)" [(ngModel)]="val" placeholder="Pesquisa">
+    </ion-searchbar>
+  </ion-toolbar>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of subAreas">
+
+      <ion-item lines="inset" button [routerLink]="['/procedimento', item.id, item.tag]">
+        <ion-label>{{item.local}}</ion-label>
+        <ion-icon slot="end" name="arrow-dropleft"></ion-icon>
+      </ion-item>
+
+
+      <ion-item-options side="end">
+
+        <ion-item-option (click)="novaSubArea(item)" color="success">
+          <ion-icon size="large" name="create"></ion-icon>
+        </ion-item-option>
+        <ion-item-option (click)="presentAlert(item)" style="--background: red;">
+          <ion-icon size="large" name="trash"></ion-icon>
+        </ion-item-option>
+
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+
+
+
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col size-lg="6">
+      <ion-button (click)="novaSubArea()" expand="block">
+        Adicionar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-footer>

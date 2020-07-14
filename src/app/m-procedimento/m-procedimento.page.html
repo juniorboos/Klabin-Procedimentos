@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar style="--background: #009e59;">
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="arrow-back" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="color: white;">
+        {{ tagProcedimento }}
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="bind">Fonte</ion-label>
+      </ion-item>
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">{{ fonteProcedimento }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="bind">Descrição</ion-label>
+      </ion-item>
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">{{ descricaoProcedimento }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="bind">Local/Método</ion-label>
+      </ion-item>
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">{{ localProcedimento }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="bind">Observações</ion-label>
+      </ion-item>
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">{{ obsProcedimento }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <img [src]="downloadUrl | async" *ngIf="downloadUrl | async">
+
+
+
+</ion-content>

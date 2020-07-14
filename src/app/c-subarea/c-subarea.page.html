@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar style="--background: #009e59;">
+      <ion-buttons slot="start">
+          <ion-button (click)="close()">
+              <ion-icon name="arrow-back" color="light"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="adicionarSubArea()">
+          <ion-icon size="large" name="checkmark" color="light"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  
+      <ion-title *ngIf="edit == true" style="color: white;">
+      Editando {{ tagSubArea }}
+      </ion-title>
+
+      <ion-title *ngIf="edit == false" style="color: white;" >Nova Subárea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="edit == false">
+      <ion-label position="floating">Tag</ion-label>
+      <ion-input required type="text" [(ngModel)]="tagSubArea"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Local</ion-label>
+      <ion-input required type="text" [(ngModel)]="localSubArea"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Setor</ion-label>
+      <ion-select interface ="popover" multiple="false" [(ngModel)]="setorSubArea">
+        <ion-select-option value="Preparo de massa">Preparo de massa</ion-select-option>
+        <ion-select-option value="Mesa plana">Mesa plana</ion-select-option>
+        <ion-select-option value="Prensa">Prensa</ion-select-option>
+        <ion-select-option value="Secaria">Secaria</ion-select-option>
+        <ion-select-option value="Enroladeira">Enroladeira</ion-select-option>
+        <ion-select-option value="Rebobinadeira">Rebobinadeira</ion-select-option>
+        <ion-select-option value="Inkjet">Inkjet</ion-select-option>
+        <ion-select-option value="Couter">Couter</ion-select-option>
+        <ion-select-option value="Embaladeira">Embaladeira</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Observações</ion-label>
+      <ion-textarea rows="5" required type="text" [(ngModel)]="obsSubArea"></ion-textarea>
+    </ion-item>
+  </ion-list> 
+</ion-content>

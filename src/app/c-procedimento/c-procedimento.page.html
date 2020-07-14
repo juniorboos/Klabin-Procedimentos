@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar style="--background: #009e59;">
+      <ion-buttons slot="start">
+          <ion-button (click)="close()">
+              <ion-icon name="arrow-back" color="light"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="adicionarProcedimento()">
+          <ion-icon size="large" name="checkmark" color="light"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title *ngIf="edit==true" style="color: white;">
+        Editando {{ tagProcedimento }}
+      </ion-title>
+
+      <ion-title *ngIf="edit==false" style="color: white;">
+        Novo bloqueio
+      </ion-title>
+
+      
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="edit==false">
+      <ion-label position="floating">Tag</ion-label>
+      <ion-input [disabled]="flagCamera==true" required type="text" [(ngModel)]="tagProcedimento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Fonte de energia</ion-label>
+      <ion-select interface ="popover" multiple="false" [(ngModel)]="fonteProcedimento">
+        <ion-select-option value="Massa">Massa</ion-select-option>
+        <ion-select-option value="Química">Química</ion-select-option>
+        <ion-select-option value="Pneumática">Pneumática</ion-select-option>
+        <ion-select-option value="Elétrica">Elétrica</ion-select-option>
+        <ion-select-option value="Água">Água</ion-select-option>
+        <ion-select-option value="Mecânica">Mecânica</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-input required type="text" [(ngModel)]="descricaoProcedimento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Local/Método</ion-label>
+      <ion-textarea rows="3" required type="text" [(ngModel)]="localProcedimento"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Observações</ion-label>
+      <ion-textarea rows="5" required type="text" [(ngModel)]="obsProcedimento"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      
+      <ion-progress-bar [value]="(uploadPercent | async)"></ion-progress-bar>
+      
+      <img [src]="downloadUrl | async" *ngIf="downloadUrl | async">
+    </ion-item>
+    </ion-list>
+
+    
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button style="--background: #009e59;" (click)="beforeTakePicture()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  
+</ion-content>
+

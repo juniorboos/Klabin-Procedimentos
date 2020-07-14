@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar style="--background: #009e59;">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="atualizarIndex();" defaultHref="/subarea" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: white;">
+      {{ nomeSubarea }}
+    </ion-title>
+    <ion-button (click)="presentPopover($event)" style="color: white;" slot="end"
+      fill="clear">
+      <ion-icon slot="icon-only" name="more"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-reorder-group (ionItemReorder)="reorderProcedimentos($event)" disabled="false">
+
+      <ion-item-sliding *ngFor="let item of procedimentos, let i = index">
+
+        <ion-item lines="inset" (click)=mostrarProcedimento(item)>
+          <div class="itens" [ngClass]="{ 'pMassa': item.fonte === 'Massa',
+                                        'pQuimica': item.fonte === 'Química',
+                                        'pPneumatica': item.fonte === 'Pneumática',
+                                        'pEletrica': item.fonte === 'Elétrica',
+                                        'pAgua': item.fonte === 'Água',
+                                        'pMecanica': item.fonte === 'Mecânica'}">
+            <ion-label>{{item.index}}</ion-label>
+          </div>
+
+          <ion-label>{{item.descricao}}</ion-label>
+          <ion-reorder *ngIf="reordenacao"></ion-reorder>
+          <ion-icon slot="end" name="arrow-dropleft"></ion-icon>
+        </ion-item>
+
+        <ion-item-options side="end">
+
+          <ion-item-option (click)="novoProcedimento(item)" color="success">
+            <ion-icon size="large" name="create"></ion-icon>
+          </ion-item-option>
+          <ion-item-option (click)="presentAlert(item, i)" style="--background: red;">
+            <ion-icon size="large" name="trash"></ion-icon>
+          </ion-item-option>
+
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+    </ion-reorder-group>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+    <ion-row>
+      <ion-col size-lg="6">
+        <ion-button (click)="reordenar()" expand ="block">    
+          Reordenar
+        </ion-button>
+      </ion-col>
+
+      <ion-col size-lg="6">
+        <ion-button (click)="novoProcedimento()" expand ="block">    
+          Adicionar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+</ion-footer>
